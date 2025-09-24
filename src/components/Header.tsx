@@ -15,9 +15,12 @@ export default function Header() {
         
         {/* 주요 내비게이션 메뉴 */}
         <nav className="space-x-4">
-          <Link href="/health" className="text-gray-600 hover:text-red-600 font-semibold">건강</Link>
-          <Link href="#" className="text-gray-600 hover:text-red-600 font-semibold">의료</Link>
-          <Link href="#" className="text-gray-600 hover:text-red-600 font-semibold">칼럼</Link>
+          <Link href="/health" className="text-gray-600 hover:text-red-600 font-semibold">건강</Link> 
+          <Link href="/medicine" className="text-gray-600 hover:text-red-600 font-semibold">의료</Link> 
+          
+          {/* '칼럼' 링크의 href="#"를 href="/column"으로 변경 */}
+          <Link href="/column" className="text-gray-600 hover:text-red-600 font-semibold">칼럼</Link> 
+          
           <Link href="#" className="text-gray-600 hover:text-red-600 font-semibold">커뮤니티</Link>
         </nav>
         
