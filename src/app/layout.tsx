@@ -27,7 +27,33 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+                {/* 1. 상단 메뉴 (Header)를 추가했습니다 */}
+        <header className="bg-white border-b-2 border-red-600 p-4">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-red-600">healthdoor</h1>
+            <nav className="space-x-4">
+              {/* '건강' 링크의 href="#"를 href="/health"로 변경 */}
+              <a href="/health" className="text-gray-600 hover:text-red-600 font-semibold">건강</a> 
+              
+              <a href="#" className="text-gray-600 hover:text-red-600 font-semibold">의료</a> 
+              <a href="#" className="text-gray-600 hover:text-red-600 font-semibold">칼럼</a>
+              <a href="#" className="text-gray-600 hover:text-red-600 font-semibold">커뮤니티</a>
+            </nav>
+          </div>
+        </header>
+
+        {/* 2. 각 페이지의 내용이 들어갈 <main> 태그와 {children} */}
+        <main className="max-w-7xl mx-auto p-4">
+          {children}
+        </main>
+
+        {/* 3. 하단 정보 (Footer)를 추가했습니다 */}
+        <footer className="bg-gray-100 mt-10 p-4 border-t border-gray-300">
+          <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
+            <p>&copy; 2025 healthdoor. All Rights Reserved.</p>
+            <p>면책 조항: 본 사이트의 정보는 참고용이며, 의학적 조언을 대체할 수 없습니다.</p>
+          </div>
+        </footer>
       </body>
     </html>
   );

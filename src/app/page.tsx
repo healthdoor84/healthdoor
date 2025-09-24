@@ -1,103 +1,51 @@
-import Image from "next/image";
+// src/app/page.tsx 파일 내용
+
+// 1. newsData를 가져옵니다.
+import { newsData } from '@/data/news';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // 화면에 표시할 뉴스 (여기서는 모든 뉴스를 사용)
+  const mainNews = newsData;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="grid md:grid-cols-3 gap-8 mt-6">
+      
+      {/* 1. 메인 뉴스 섹션 (2/3 영역) */}
+      <div className="md:col-span-2">
+        <h2 className="text-3xl font-bold mb-6 border-b pb-2 text-gray-800">주요 뉴스</h2>
+        
+        <div className="space-y-4">
+          {/* 2. newsData를 반복하여 뉴스 목록을 생성합니다. */}
+          {mainNews.map(article => (
+            <a 
+              key={article.id} // React는 반복되는 요소에 key가 필요합니다.
+              href={`/news/${article.id}`} // 동적 라우팅 주소로 연결합니다.
+              className="block border p-4 rounded-lg shadow-sm hover:bg-red-50 transition-colors"
+            >
+              <h3 className="text-xl font-semibold text-red-600">제목: {article.title}</h3>
+              <p className="text-gray-600 mt-1">{article.summary}</p>
+            </a>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* 3. 사이드바 섹션 (1/3 영역) - 이전과 동일 */}
+      <div className="md:col-span-1">
+        
+        <div className="bg-gray-50 p-4 rounded-lg shadow-md">
+          <h2 className="text-xl font-bold mb-4 border-b pb-2 text-red-600">인기 기사</h2>
+          <ul className="space-y-2 text-gray-700">
+            <li>1. 아침 운동 vs 저녁 운동, 뭐가 더 좋을까?</li>
+            <li>2. 커피 하루 몇 잔이 적당한가</li>
+            <li>3. 치과 검진 미루면 안 되는 이유</li>
+          </ul>
+        </div>
+        
+        <div className="mt-8 bg-yellow-100 p-8 text-center text-gray-700 rounded-lg shadow-md">
+          <p className="font-semibold">여기는 광고 또는 특별 콘텐츠 영역입니다</p>
+        </div>
+        
+      </div>
     </div>
   );
 }
