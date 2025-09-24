@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,37 +25,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-                {/* 1. 상단 메뉴 (Header)를 추가했습니다 */}
-        <header className="bg-white border-b-2 border-red-600 p-4">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-red-600">healthdoor</h1>
-            <nav className="space-x-4">
-              {/* '건강' 링크의 href="#"를 href="/health"로 변경 */}
-              <a href="/health" className="text-gray-600 hover:text-red-600 font-semibold">건강</a> 
-              
-              <a href="#" className="text-gray-600 hover:text-red-600 font-semibold">의료</a> 
-              <a href="#" className="text-gray-600 hover:text-red-600 font-semibold">칼럼</a>
-              <a href="#" className="text-gray-600 hover:text-red-600 font-semibold">커뮤니티</a>
-            </nav>
-          </div>
-        </header>
+    // 1. lang="en"을 lang="ko"로 변경합니다. (선택 사항이지만 권장)
+    <html lang="ko">
+      
+      {/* 2. 폰트 className을 다시 추가합니다. */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        
+        {/* 1. Header 컴포넌트 사용 */}
+        <Header />
 
         {/* 2. 각 페이지의 내용이 들어갈 <main> 태그와 {children} */}
         <main className="max-w-7xl mx-auto p-4">
           {children}
         </main>
 
-        {/* 3. 하단 정보 (Footer)를 추가했습니다 */}
-        <footer className="bg-gray-100 mt-10 p-4 border-t border-gray-300">
-          <div className="max-w-7xl mx-auto text-center text-sm text-gray-500">
-            <p>&copy; 2025 healthdoor. All Rights Reserved.</p>
-            <p>면책 조항: 본 사이트의 정보는 참고용이며, 의학적 조언을 대체할 수 없습니다.</p>
-          </div>
-        </footer>
+        {/* 3. Footer 컴포넌트 사용 */}
+        <Footer />
+        
       </body>
     </html>
   );
